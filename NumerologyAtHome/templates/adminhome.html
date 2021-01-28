@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block logo %}
+<h1>
+	<a href="#">
+		Neurology At Home<br>
+		Admin Panel
+	</a>
+</h1>
+{% endblock %}
+
+	{% block menu %}
+		<ul>
+			<li class = "active">
+				<a href = "{{curl}}adminhome" >Admin Home</a>
+			</li>
+
+			<li>
+				<a href = "{{curl}}viewuser/" >View Users</a>
+			</li>
+
+			<li>
+				<a href = "{{curl}}manageuser/" >Manage Users</a>
+			</li>
+
+			<li>
+				<a href = {{curl}}login/ >Logout</a>
+			</li>
+		</ul>
+	{% endblock %}
+
+{% block welcome %}
+<center>
+<h1>Welcome To Neurology At Home</h1>
+<h1>Admin Panel</h1>
+</center>
+
+<br><br><br>
+
+{% if pendingRequests == 0 %}
+<h3>
+	There are currently no pending requests.
+</h3>
+{% endif %}
+
+{% if pendingRequests > 0 %}
+<p>
+	<b>
+		Looking for pending queries?
+		<br>
+		<a href="{{curl}}viewuser/"> Tap here </a>
+	</b>
+</p>
+{% endif %}
+
+{% endblock %}

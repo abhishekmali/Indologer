@@ -1,0 +1,76 @@
+{% extends 'userhome.html' %}
+
+{% block logo %}
+<h1>
+	<a href="#">
+		Neurology At Home<br>
+		User Panel
+	</a>
+</h1>
+{% endblock %}
+
+	{% block menu %}	
+		<ul>
+			<li>
+				<a href = "{{curl}}userhome/?userid={{userid}}" >User Home</a>
+            </li>
+            
+            <li class = "active">
+				<a href = "{{curl}}askquery/?userid={{userid}}" >Ask Query</a>
+			</li>
+
+			<li>
+				<a href = "{{curl}}checkresult/?userid={{userid}}" >Check Result</a>
+			</li>
+            
+			<li>
+				<a href = {{curl}}login/ >Logout</a>
+			</li>
+		</ul>
+	{% endblock %}	
+
+{% block welcome %}
+<center>	
+<h1>Welcome To Neurology At Home</h1>
+<h1>User - Ask Query Panel</h1>
+</center>
+
+<br><br>
+
+{% if subError == 0 %}
+    <script>
+      alert("Submitted Successful...");
+    </script>
+{% endif %}
+
+
+<font color="orange">
+	{{output}}
+</font>
+
+<form method = "POST" action = {{curl}}askquery/?userid={{userid}}>
+	{% csrf_token %}
+	<table cellspacing="10" cellpadding="10" width = "100%">
+		
+
+		<tr>
+			<td align = "left" colspan = "2"><b>Describe your Query briefly in under 250 words:</b></td>
+		</tr>
+
+		<tr>
+			<td align = "left" colspan="2">
+				<textarea cols="5" rows="5" name="userquery" placeholder="Describe your Query briefly..." required></textarea>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left" width = "100%">
+				<input type="text" name="email" placeholder="Confirm your email..." required />
+			</td>
+			<td align = "right" width="100%">
+				<input type="submit" value="Submit Query" />
+			</td>
+		</tr>
+	</table>
+</form>
+{% endblock %}	

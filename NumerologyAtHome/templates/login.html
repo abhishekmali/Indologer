@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+			{% block menu %}
+			<ul>
+				<li>
+					<a href = {{curl}} accesskey = "1" title = "hello">Home Page</a>
+				</li>
+
+                <!--
+				<li>
+					<a href = {{curl}}about accesskey = "2" title = "">About</a>
+				</li>
+
+				<li>
+					<a href = {{curl}}contact accesskey = "3" title = "">Contact</a>
+				</li>
+
+				<li>
+					<a href = {{curl}}service accesskey = "4" title = "">Service</a>
+                </li>
+                -->
+
+				<li>
+					<a href = {{curl}}register accesskey = "5" title = "">Register</a>
+				</li>
+
+				<li class = "active">
+					<a href = {{curl}}login accesskey = "6" title = "">Login</a>
+				</li>
+			</ul>
+			{% endblock %}
+
+{% block welcome %}
+
+<h1>Welcome to Numerology At Home</h1>
+<br>
+<h1>Login Page</h1>
+
+{% if loginError == 1 %}
+    <script>
+      alert("Wrong Username or Password ");
+    </script>
+{% endif %}
+
+<br>
+
+<form method = "post" action = {{curl}}login/>
+	{% csrf_token %}
+	<table cellspacing = "10" cellpadding = "5">
+		<tr>
+			<td colspan =2>
+				<font color = "orange">
+					<b>{{output}}</b>
+				</font>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Username/Email</td>
+			<td align = "left">
+				<input type="text" name="email" placeholder="Enter email" required autofocus/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Password</td>
+			<td align = "left">
+				<input type="password" name="password" placeholder="Enter password" required autofocus />
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left"><input type="submit" value="Login" /> </td>
+		</tr>
+	</table>
+</form>
+
+{% endblock %}

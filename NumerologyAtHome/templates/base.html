@@ -1,0 +1,180 @@
+{% load static %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>
+	Numerology At Home
+</title>
+<link href="{% static 'images/numIcon.png' %}" rel="icon" />
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
+
+<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/fonts.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+
+<body>
+
+<div id="header-wrapper">
+	{% block header-wrapper %}
+	
+	<div id="header" class="container">
+		{% block header %}
+		<div id="logo">
+			{% block logo %}
+			<h1>
+				<a href="#">
+					Numerology At Home
+				</a>
+			</h1>
+			{% endblock %}
+		</div>
+		<!--logo ends-->
+
+		<div id="menu">
+			{% block menu %}
+			<ul>
+				<li class = "active">
+					<a href = {{curl}} accesskey = "1" title = "hello">Home Page</a>
+				</li>
+
+                <!--
+				<li>
+					<a href = {{curl}}about accesskey = "2" title = "">About</a>
+				</li>
+
+				<li>
+					<a href = {{curl}}contact accesskey = "3" title = "">Contact</a>
+				</li>
+
+				<li>
+					<a href = {{curl}}service accesskey = "4" title = "">Service</a>
+                </li>
+                -->
+
+				<li>
+					<a href = {{curl}}register accesskey = "5" title = "">Register</a>
+				</li>
+				
+				<li>
+					<a href = {{curl}}login accesskey = "6" title = "">Login</a>
+				</li>
+			</ul>
+			{% endblock %}
+		</div>
+		<!--menu ends-->
+		{% endblock %}
+	</div>
+	<!--header ends-->
+	{% endblock %}
+</div>
+
+<!--header-wrapper ends-->
+
+<div class="wrapper">
+	{% block wrapper %}
+	<div id="welcome" class="container">
+		{% block welcome %}
+		<div class="title">
+			<h2>Welcome to Numerology At Home</h2>
+		</div>
+		<!--title ends-->
+
+		<p>A platform where you can get in touch with your favorite numerologist</p>
+		{% endblock %}
+	</div>
+	<!--welcome ends-->
+
+
+	</div>
+	<!-- portfolio ends-->
+	{% endblock %}
+</div>
+
+
+
+<div id="footer">
+{% block footer %}
+	<div class="container">
+
+		<div class="fbox1">
+			<img src = "{% static 'images/Location.png'%}" width = "60" height = "60">
+			<br><br><br><br>
+			<!--<span class="icon icon-map-marker"></span>-->
+			<span>
+				B 40 Veena Nagar<br />Sukhliya, Indore
+			</span>
+		</div>
+		<!--fbox1 ends-->
+
+		<div class="fbox2">
+			<img src = "{% static 'images/Telephone.png'%}" width = "60" height = "60">
+			<br><br><br><br>
+			<!--<span class="icon icon-phone"></span>-->
+			<span>
+				Telephone: +91 9644001347
+			</span>
+		</div>
+		<!--fbox2 ends-->
+
+		<div class="fbox3">
+			<img src = "{% static 'images/Email.png'%}" width = "60" height = "60">
+			<br><br><br><br>
+			<!--<span class="icon icon-envelope"></span>-->
+			<span>
+				connectwithus@nah.com
+			</span>
+		</div>
+		<!--fbox3 ends-->
+
+	</div>
+	<!--container ends-->
+{% endblock %}
+</div>
+<!--footer ends-->
+
+
+<div id="copyright">
+{% block copyright %}
+	<p>
+		&copy; Numerology At Home. All rights reserved. | Design by Abhishek Mali.
+	</p>
+
+	<ul class="contact">
+		<li>
+			<a href="#"><img src = "{% static 'images/twitter.jpeg' %}" height = "40" width = "40"></a>
+		</li>
+
+		<li>
+			<a href="#"><img src = "{% static 'images/dribble.jpeg' %}" height = "40" width = "40"></a>
+		</li>
+
+		<li>
+			<a href="#"><img src = "{% static 'images/facebook.jpeg' %}" height = "40" width = "40"></a>
+		</li>
+
+		<li>
+			<a href="#"><img src = "{% static 'images/tumblr.jpeg' %}" height = "40" width = "40"></a>
+		</li>
+
+		<li>
+			<a href="#"><img src = "{% static 'images/rss.jpeg' %}" height = "40" width = "40"></a>
+		</li>
+	</ul>
+{% endblock %}
+</div>
+<!--copyright ends-->
+
+</body>
+</html>

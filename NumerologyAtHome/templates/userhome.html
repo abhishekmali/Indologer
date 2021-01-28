@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block logo %}
+<h1>
+	<a href="#">
+		Neurology At Home<br>
+		User Panel
+	</a>
+</h1>
+{% endblock %}
+
+	{% block menu %}	
+		<ul>
+			<li class = "active">
+				<a href = "{{curl}}userhome/?userid={{userid}}" >User Home</a>
+			</li>
+
+			<li>
+				<a href = "{{curl}}askquery/?userid={{userid}}" >Ask Query</a>
+			</li>
+
+			<li>
+				<a href = "{{curl}}checkresult/?userid={{userid}}" >Check Result</a>
+			</li>
+            
+			<li>
+				<a href = {{curl}}login/ >Logout</a>
+			</li>
+		</ul>
+	{% endblock %}	
+
+{% block welcome %}
+<center>	
+<h1>Welcome To Neurology At Home</h1>
+<h1>User Panel</h1>
+</center>
+{% endblock %}	

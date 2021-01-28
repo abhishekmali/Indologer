@@ -1,0 +1,116 @@
+{% extends 'adminhome.html' %}
+
+{% block logo %}
+<h1>
+	<a href="#">
+		Neurology At Home<br>
+		Admin Panel
+	</a>
+</h1>
+{% endblock %}
+
+	{% block menu %}	
+		<ul>
+			<li>
+				<a href = "{{curl}}adminhome" >Admin Home</a>
+			</li>
+
+			<li>
+				<a href = "{{curl}}viewuser/" >View Users</a>
+			</li>
+
+			<li>
+				<a href = "{{curl}}manageuser/" >Manage Users</a>
+			</li>
+			
+			<li class = "active">
+				<a href = "{{curl}}answerquery/?userid={{userid}}" >Answer Query</a>
+            </li>
+            
+			<li>
+				<a href = {{curl}}login/ >Logout</a>
+			</li>
+		</ul>
+	{% endblock %}	
+
+{% block welcome %}
+
+<center>	
+	<h2>Welcome To Neurology At Home</h2>
+	<h2>Admin - Answer Query Panel</h2>
+</center>
+
+<br>
+
+<form method = "post" action = {{curl}}answerquery/>
+	{% csrf_token %}
+	<table cellspacing="10" cellpadding="5">
+		<tr>
+			<td align = "left">Name</td>
+			<td align = "left">
+				<input type="text" name="name" placeholder="Enter name" required/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Email</td>
+			<td align = "left">
+				<input type="text" name="email" placeholder="Enter email" required/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Password</td>
+			<td align = "left">
+				<input type="password" name="password" placeholder="Enter password" required/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Mobile</td>
+			<td align = "left">
+				<input type="text" name="mobile" placeholder="Enter mobile" required/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Date Of Birth</td>
+			<td align = "left">
+				<input type="date" name="dob" placeholder="Enter DOB" required/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">City</td>
+			<td align = "left">
+				<select style="width:180px;" name="city">
+					<option>select city</option>
+					<option>Indore</option>
+					<option>Bhopal</option>
+					<option>Ujjain</option>
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Address</td>
+			<td align = "left">
+				<textarea cols="10" rows="1" name="address" placeholder="Enter address" required></textarea>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Gender</td>
+			<td align = "left">
+				<input type="radio" name="gender" value="Male" /> Male 
+				<input type="radio" name="gender" value="Female" /> Female
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left"><input type="submit" value="Register" /> </td>
+		</tr>
+	</table>
+</form>
+
+{% endblock %}	

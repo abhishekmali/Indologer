@@ -1,0 +1,86 @@
+{% extends 'adminhome.html' %}
+
+{% block logo %}
+<h1>
+	<a href="#">
+		Neurology At Home<br>
+		Admin Panel
+	</a>
+</h1>
+{% endblock %}
+
+	{% block menu %}
+		<ul>
+			<li>
+				<a href = "{{curl}}adminhome" >Admin Home</a>
+			</li>
+
+			<li class = "active">
+				<a href = "{{curl}}viewuser/" >View Users</a>
+			</li>
+
+			<li>
+				<a href = "{{curl}}manageuser/" >Manage Users</a>
+			</li>
+
+			<li>
+				<a href = {{curl}}login/ >Logout</a>
+			</li>
+		</ul>
+	{% endblock %}
+
+{% block welcome %}
+
+<center>
+	<h2>Welcome To Neurology At Home</h2>
+	<h2>Admin - View User Panel</h2>
+</center>
+
+<br>
+{% if totNoUsers == 0 %}
+<h2>There are currently no registered users.</h2>
+{% endif %}
+
+{% if totalNoUsers > 0 %}
+	<h2>There are currently {{totalNoUsers}} registered users.</h2>
+	<br>
+	<table cellpadding="5" cellspacing="10" width="100%">
+		<hr>
+		<tr>
+			<th>User ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Date of Birth</th>
+			<th>Query Status</th>
+		</tr>
+
+		<tr>
+			<td colspan="6">
+				<hr>
+			</td>
+		</tr>
+
+		{% for user in totalUserDetails %}
+		<tr>
+			<td>{{user.0.0}}</td>
+			<td>{{user.0.1}}</td>
+			<td>{{user.0.2}}</td>
+			<td>{{user.0.5}}</td>
+			<td>
+				{% if user.1.1 == None %}
+					No Queries
+				{% else %}
+					{% if user.1.2 == None %}
+						<a href="{{curl}}answerquery/?userid={{user.0.0}}">Pending</a>
+					{% else %}
+						Already Answered
+					{% endif %}
+				{% endif %}
+			</td>
+		</tr>
+		{% endfor %}
+
+	</table>
+{% endif %}
+
+{% endblock %}

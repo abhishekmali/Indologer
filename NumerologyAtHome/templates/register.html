@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+			{% block menu %}
+			<ul>
+				<li>
+					<a href = {{curl}} accesskey = "1" title = "hello">HomePage</a>
+				</li>
+
+				<!--
+				<li>
+					<a href = {{curl}}about accesskey = "2" title = "">About</a>
+				</li>
+
+				<li>
+					<a href = {{curl}}contact accesskey = "3" title = "">Contact</a>
+				</li>
+
+				<li>
+					<a href = {{curl}}service accesskey = "4" title = "">Service</a>
+				</li>
+				-->
+
+				<li class = "active">
+					<a href = {{curl}}register accesskey = "5" title = "">Register</a>
+				</li>
+
+				<li>
+					<a href = {{curl}}login accesskey = "6" title = "">Login</a>
+				</li>
+			</ul>
+			{% endblock %}
+
+{% block welcome %}
+
+<h2>Welcome to Numerology At Home</h2>
+<br>
+<h2>Register Page</h2>
+
+<br>
+
+{% if regError == 1 %}
+    <script>
+      alert("Email Already Exists!");
+    </script>
+{% endif %}
+
+{% if regError == 0 %}
+    <script>
+      alert("Registration Successful...");
+    </script>
+{% endif %}
+
+
+<font color="orange">
+	{{output}}
+</font>
+
+<form method = "post" action = {{curl}}register/>
+	{% csrf_token %}
+	<table cellspacing="10" cellpadding="5">
+		<tr>
+			<td align = "left">Name</td>
+			<td align = "left">
+				<input type="text" name="name" placeholder="Enter name" required autofocus/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Email</td>
+			<td align = "left">
+				<input type="text" name="email" placeholder="Enter email" required/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Password</td>
+			<td align = "left">
+				<input type="password" name="password" placeholder="Enter password" required/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Mobile</td>
+			<td align = "left">
+				<input type="text" name="mobile" placeholder="Enter mobile" required/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Date Of Birth</td>
+			<td align = "left">
+				<input type="date" name="dob" placeholder="Enter DOB" required/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">City</td>
+			<td align = "left">
+				<select style="width:180px;" name="city">
+					<option>select city</option>
+					<option>Indore</option>
+					<option>Bhopal</option>
+					<option>Ujjain</option>
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Address</td>
+			<td align = "left">
+				<textarea cols="10" rows="1" name="address" placeholder="Enter address" required></textarea>
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left">Gender</td>
+			<td align = "left">
+				<input type="radio" name="gender" value="Male" /> Male
+				<input type="radio" name="gender" value="Female" /> Female
+			</td>
+		</tr>
+
+		<tr>
+			<td align = "left"><input type="submit" value="Register" /> </td>
+		</tr>
+	</table>
+</form>
+
+{% endblock %}
