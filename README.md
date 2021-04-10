@@ -1,2 +1,2 @@
 # Indologer
-A platform to get in touch with your favorite Numerologist
+A Django (Python Web Framework) based web application at which anyone can get in touch with their favorite Numerologist
