@@ -1,5 +1,6 @@
 {% extends 'adminhome.html' %}
 
+{% load static %}
 {% block logo %}
 <h1>
 	<a href="#">
@@ -9,7 +10,7 @@
 </h1>
 {% endblock %}
 
-	{% block menu %}	
+	{% block menu %}
 		<ul>
 			<li>
 				<a href = "{{curl}}adminhome" >Admin Home</a>
@@ -22,16 +23,75 @@
 			<li class = "active">
 				<a href = "{{curl}}manageuser/" >Manage Users</a>
 			</li>
-            
+
 			<li>
 				<a href = {{curl}}login/ >Logout</a>
 			</li>
 		</ul>
-	{% endblock %}	
+	{% endblock %}
 
 {% block welcome %}
-<center>	
+<center>
 <h1>Welcome To Neurology At Home</h1>
 <h1>Admin - Manage User Panel</h1>
 </center>
-{% endblock %}	
+
+{% if totNoUsers == 0 %}
+<h2>There are currently no registered users.</h2>
+{% endif %}
+
+{% if totalNoUsers > 0 %}
+	<br>
+	<h2>There are currently {{totalNoUsers}} registered users.</h2>
+	<br>
+	<table cellpadding="5" cellspacing="10" width="100%">
+		<hr>
+		<tr>
+			<th>User ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Date of Birth</th>
+			<th>Block / Unblock</th>
+			<th>Delete</th>
+		</tr>
+
+		<tr>
+			<td colspan="6">
+				<hr>
+			</td>
+		</tr>
+
+		{% for user in totalUsers %}
+		<tr>
+			<td>{{user.0}}</td>
+			<td>{{user.1}}</td>
+			<td>{{user.2}}</td>
+			<td>{{user.5}}</td>
+			<td>
+				<!--
+				{% if user.11 == 1 %}
+					<a title="Block Users" href={{curl}}myadmin/manageusersstatus/?s=block&rid={{user.0}}   >
+				{% else %}
+					<a href="#">Unblock</a>
+				{% endif %}
+				{% if user.11 == 1 %}
+					<a title="Block User" href=#>
+					<img src="{% static 'images/block.png' %}" height="50" width="50"/>
+					</a>
+				{% else %}
+					<a title="Un-Block Users" href=#  >
+					<img src="{% static 'images/unblock.png' %}" height="50" width="50"/>
+					</a>
+				{% endif %}
+				-->
+			</td>
+			<!--
+			<td>Delete</td>
+			-->
+		</tr>
+		{% endfor %}
+
+	</table>
+{% endif %}
+
+{% endblock %}

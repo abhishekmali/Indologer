@@ -9,12 +9,12 @@
 </h1>
 {% endblock %}
 
-	{% block menu %}	
+	{% block menu %}
 		<ul>
 			<li>
 				<a href = "{{curl}}userhome/?userid={{userid}}" >User Home</a>
             </li>
-            
+
             <li class = "active">
 				<a href = "{{curl}}askquery/?userid={{userid}}" >Ask Query</a>
 			</li>
@@ -22,15 +22,15 @@
 			<li>
 				<a href = "{{curl}}checkresult/?userid={{userid}}" >Check Result</a>
 			</li>
-            
+
 			<li>
 				<a href = {{curl}}login/ >Logout</a>
 			</li>
 		</ul>
-	{% endblock %}	
+	{% endblock %}
 
 {% block welcome %}
-<center>	
+<center>
 <h1>Welcome To Neurology At Home</h1>
 <h1>User - Ask Query Panel</h1>
 </center>
@@ -39,7 +39,7 @@
 
 {% if subError == 0 %}
     <script>
-      alert("Submitted Successful...");
+      alert("Query Submitted Successfully...");
     </script>
 {% endif %}
 
@@ -51,7 +51,7 @@
 <form method = "POST" action = {{curl}}askquery/?userid={{userid}}>
 	{% csrf_token %}
 	<table cellspacing="10" cellpadding="10" width = "100%">
-		
+
 
 		<tr>
 			<td align = "left" colspan = "2"><b>Describe your Query briefly in under 250 words:</b></td>
@@ -73,4 +73,4 @@
 		</tr>
 	</table>
 </form>
-{% endblock %}	
+{% endblock %}

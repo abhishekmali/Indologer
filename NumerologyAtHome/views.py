@@ -12,7 +12,7 @@ userProp={}
 
 ## Get IP address
 def get_ip():
-    res = ''.join(secrets.choice(string.ascii_uppercase + string.digits + string.ascii_lowercase) for i in range(20)) 
+    res = ''.join(secrets.choice(string.ascii_uppercase + string.digits + string.ascii_lowercase) for i in range(20))
     return res
 '''
 
@@ -37,17 +37,17 @@ def register(request):
         query = "select email from registered where email = '" + str(email) + "';"
         models.cursor.execute(query)
         existingEmail = models.cursor.fetchall()
-        
+
 
         try:
             existingEmail = existingEmail[0][0]
             return render(request, "register.html", {'curl': curl, 'output': '---------- Email Already Exists ----------', 'regError': 1})
         except:
             pass
-            
+
 
         name = request.POST.get("name")
-        
+
         password = request.POST.get("password")
         mobile = request.POST.get("mobile")
         dob = request.POST.get("dob")
@@ -57,7 +57,7 @@ def register(request):
         now = datetime.now()
         dateofreg = now
         # print(now)
-        
+
         query = "insert into registered values(NULL,'%s','%s', '%s', '%s','%s','%s','%s','%s','%s','User',1)" % (name,email,password,mobile,dob,city,address,gender,dateofreg)
         models.cursor.execute(query)
         models.db.commit()
@@ -71,7 +71,7 @@ def register(request):
         query = "insert into userqueries values('%s', NULL, NULL, '%s')" % (id, email)
         models.cursor.execute(query)
         models.db.commit()
-        
+
         return render(request, "register.html", {'curl': curl, 'output': 'Registered Successfully...', 'regError': 0})
 
 
@@ -138,7 +138,18 @@ def manageuser(request):
 def answerquery(request):
     if request.method == "GET":
         userid = request.GET.get("userid")
-        return render(request, 'answerquery.html', {'curl': curl, "userid":userid})
+
+        query1 = "select * from registered where id = '%s';" % (userid)
+        models.cursor.execute(query1)
+        userDetail = models.cursor.fetchall()
+        print(userDetail)
+
+        query2 = "select userquery from userqueries where id = '%s';" % (userid)
+        models.cursor.execute(query2)
+        userQuerySolution = models.cursor.fetchall()
+        print(userQuerySolution)
+
+        return render(request, 'answerquery.html', {'curl': curl, "userid":userid, 'userDetail': userDetail, 'userQuerySolution': userQuerySolution})
     else:
         solution = request.POST.get("solution")
         email = request.POST.get("email")
@@ -148,7 +159,8 @@ def answerquery(request):
         models.cursor.execute(query)
         models.db.commit()
 
-        return render(request, 'answerquery.html', {'curl': curl, "userid":userid})
+        return render(request, 'viewuser.html', {'curl': curl})
+
 
 # ---------- User Views ----------
 

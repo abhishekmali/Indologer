@@ -60,14 +60,14 @@
 		<tr>
 			<td align = "left">Username/Email</td>
 			<td align = "left">
-				<input type="text" name="email" placeholder="Enter email" required autofocus/>
+				<input type="text" name="email" placeholder="Enter email" pattern="[^ @]*@[^ @]*" required autofocus/>
 			</td>
 		</tr>
 
 		<tr>
 			<td align = "left">Password</td>
 			<td align = "left">
-				<input type="password" name="password" placeholder="Enter password" required autofocus />
+				<input type="password" name="password" placeholder="Enter password" pattern=".{4,20}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required autofocus />
 			</td>
 		</tr>
 

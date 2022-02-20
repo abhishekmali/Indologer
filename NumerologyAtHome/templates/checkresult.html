@@ -9,7 +9,7 @@
 </h1>
 {% endblock %}
 
-	{% block menu %}	
+	{% block menu %}
 		<ul>
 			<li>
 				<a href = "{{curl}}userhome/?userid={{userid}}" >User Home</a>
@@ -22,37 +22,48 @@
 			<li class = "active">
 				<a href = "{{curl}}checkresult/?userid={{userid}}" >Check Result</a>
 			</li>
-            
+
 			<li>
 				<a href = "{{curl}}login/" >Logout</a>
 			</li>
 		</ul>
-	{% endblock %}	
+	{% endblock %}
 
 {% block welcome %}
-<center>	
+<center>
 <h1>Welcome To Neurology At Home</h1>
 <h1>User Panel Check Result Page</h1>
 </center>
 
-<br>
-{{userQuerySolution}}
-<br>
+{% if userQuerySolution.0.0 == None %}
+	<br><br><br>
+	No Queries asked till now...
+	<br><br>
+	Wanna ask a query?
+	<br>
+	<a href="{{curl}}askquery/?userid={{userid}}"> Tap here </a>
+{% else %}
+	<table cellspacing="5" cellpadding="5" width = "100%">
+		<tr>
+			<th align = "left" width = "50%"><b>User Query</b></th>
+			<th align = "left" width = "50%"><b>Solution or prediction given by Admin</b></th>
+		</tr>
 
-<table cellspacing="5" cellpadding="5" width = "100%">
-	<tr>
-		<th align = "left" width = "50%"><b>User Query</b></th>
-		<th align = "left" width = "50%"><b>Solution or prediction given by Admin</b></th>
-	</tr>
+		<tr>
+			<td align = "left">
+				<textarea readonly rows="10" cols="30" " >{{userQuerySolution.0.0}}</textarea>
+			</td>
+			<td align = "left">
+				{% if userQuerySolution.0.1 != None %}
+				<textarea readonly rows="10" cols="30" >{{userQuerySolution.0.1}}</textarea>
+				{% else %}
+				<textarea readonly rows="10" cols="30" >Query Not Answered Yet</textarea>
+				{% endif %}
+			</td>
+		</tr>
+	</table>
+{% endif %}
 
-	<tr>
-		<td align = "left">
-			<textarea value="{{userQuerySolution.0.0}}" ></textarea>
-		</td>
-		<td align = "left">
-			<input type="textbox" value="{{userQuerySolution.0.2}}" ></textarea>
-		</td>
-	</tr>
-</table>
 
-{% endblock %}	
+
+{% endblock %}
